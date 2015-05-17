@@ -16,7 +16,10 @@ TODO:
 First step
 Collect documents
 
-	Currently we have a rudimentary wikipedia scraper but it is in need of improvement. Currently it grabs everything in between the 'body' tags of the webpage. This is not accurate enough and we must implement python's bleach library to ignore the non-content related elements (eg. <script>).
+	Currently we can fetch any number of random documents from af.wikipedia.org. fetchdocs.py strips the content from the webpages and creates a doc for each page. Now we need to fetch related docs. I have constructed a Breadth-First Search function bfs that takes a starting url and generates a list of related urls by following the links on each page in a breadth first fashion. BFS is chosen to collect the documents most closely linked to the original document first, and then go for more indirectly linked documents.
+
+	Still needs to be done: write a function that fetches all the hrefs from a documents content.
+	Then the program needs to be run to fetch roughly 1,000 docs. 
 
 Create testing queries
 
