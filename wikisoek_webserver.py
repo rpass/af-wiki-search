@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import cgi
+import re
 
 app = Flask(__name__)
 
@@ -11,10 +12,24 @@ def home():
 @app.route('/search', methods=['POST'])
 def search():
 	query = request.form['query']
+	query = query.strip()
 
+	# Remove all non-word characters (everything except numbers and letters)
+	query = re.sub(r"[^\w\s]", '', query)
+	# Replace whitespace with + for SOLR query
+	query = query.replace(' ', '+')
+
+	if (query == ""):
+		return render_template('index.html')
+	else:
+
+	# "http://localhost:8983/solr/IRSELR/select?q="+query+"&wt=python&indent=true&hl=true&hl.simple.pre=%3Cem%3E&hl.simple.post=%3C%2Fem%3E&hl.highlightMultiTerm=true"
+	# "http://localhost:8983/solr/IRSELR/select?q="+query+"&wt=python&indent=true"
 	# send GET request to SOLR
-	results = ["result 1", "result 2", "result 3"]
-	return render_template('results.html', query = query, results = results)
+
+		results = ["result 1", "result 2", "result 3"]
+		query = query.replace('+', ' ')
+		return render_template('results.html', query = query, results = results)
 
 # @app.route('/reviews/<int:movie_id>/')
 # def getreview(movie_id):
