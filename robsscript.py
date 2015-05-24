@@ -8,7 +8,12 @@
 # for a in list_of_files:
 # 	print(a)
 
-mypath = os.getcwd()
+import os
 from os import listdir
 from os.path import isfile, join
-onlyfiles = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
+mypath = os.getcwd()
+onlyfiles = [ f for f in listdir(mypath) if isfile(join(mypath,f)) and 'Beeld~' in f ]
+
+for a in onlyfiles:
+	os.remove(a)
+print(onlyfiles)
