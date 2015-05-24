@@ -29,7 +29,7 @@ def search():
 	# send GET request to SOLR
 
 
-		conn = urlopen('http://localhost:8983/solr/IRSELR/select?q='+query+'&wt=python&indent=true')
+		conn = urlopen('http://localhost:8983/solr/IRSELR/select?q='+query+'&rows=30&wt=python&indent=true')
 		rsp = eval( conn.read() )
 		matches = 6
 		matches = rsp['response']['numFound']
@@ -48,6 +48,7 @@ def search():
 			content += "..."
 			#strip file location and file extension
 			name = file_name[file_name.rfind("\\")+1:file_name.rfind('.')]
+			name = re.sub('[^A-Za-z0-9\.]+', ' ', name)
 			results.append([name,content])
 
 		query = query.replace('+', ' ')
