@@ -51,14 +51,8 @@ def search():
 			results.append([name,content])
 
 		query = query.replace('+', ' ')
-		return render_template('results.html', matches = matches, query = query, results = results, file_name = file_name)
+		return render_template('results.html', matches = matches, query = query, results = results)
 
-@app.route('/page/<doc_title>')
-def getDoc(doc_title):
-	f = open(doc_title, 'r')
-	content = f.read()
-	f.close()
-	return render_template('page.html', doc_title = doc_title, doc_content = content)
 # @app.route('/reviews/<int:movie_id>/')
 # def getreview(movie_id):
 # 	moviename = session.query(Movie).filter_by(id=movie_id).one().name
