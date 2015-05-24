@@ -11,15 +11,22 @@ We are 'indexing' 1,000 afrikaans wikipedia articles as our document collection 
 
 ----
 
+To Run:
+
+This web application uses Python 2.7 to run a webserver.
+
+Dependencies:
+
+	Python 2.7
+	Flask (sudo pip install flask)
+
+
+----
+
 TODO:
 
-First step
-Collect documents
-
-	Currently we can fetch any number of random documents from af.wikipedia.org. fetchdocs.py strips the content from the webpages and creates a doc for each page. Now we need to fetch related docs. I have constructed a Breadth-First Search function bfs that takes a starting url and generates a list of related urls by following the links on each page in a breadth first fashion. BFS is chosen to collect the documents most closely linked to the original document first, and then go for more indirectly linked documents.
-
-	Still needs to be done: write a function that fetches all the hrefs from a documents content.
-	Then the program needs to be run to fetch roughly 1,000 docs. 
-
-Create testing queries
+Get webserver to send correct GET requests to SOLR
+Get webserver to receive returned results from SOLR
+Get webserver to extract links from JSON returned by SOLR
+Get webserver to format results page correctly
 

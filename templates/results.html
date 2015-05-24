@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Results for query</title> 
+</head>
+<body>
+<h1>Results for <i>{{query}}</i></h1>
+{% for result in results %}
+<div class="result">
+	<a href="#">{{result}}</a>
+</div>
+{% endfor %}
+</body>
+</html>
