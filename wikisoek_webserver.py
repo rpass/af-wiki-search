@@ -45,6 +45,7 @@ def search():
 				content.replace('\n', ' ').replace('\r', '')
 			f.close()
 			content = re.sub('[^A-Za-z0-9\.]+', ' ', content)
+			content += "..."
 			#strip file location and file extension
 			name = file_name[file_name.rfind("\\")+1:file_name.rfind('.')]
 			results.append([name,content])

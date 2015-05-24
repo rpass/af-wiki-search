@@ -1,4 +1,4 @@
-AF-wiki-search
+﻿AF-wiki-search
 Information Retrieval Project
 UCT Computer Science Honours 2015
 
@@ -10,6 +10,12 @@ This is an academic project to build a search engine that returns relevant resul
 We are 'indexing' 535 afrikaans wikipedia articles as our document collection and enforcing a minimum document length of ±750 words to increase quality of results.
 
 ----
+
+To run SOLR:
+Navigate to the solr-5.1.0 directory (so that you can see the list of folders: bin, contrib, dist, etc.)
+In terminal, enter: "bin/solr restart -p 8983"
+
+This should start solr running on localhost.
 
 To Run:
 
