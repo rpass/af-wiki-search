@@ -7,7 +7,7 @@ Rob Passmore
 Lauren Sanby
 
 This is an academic project to build a search engine that returns relevant results when queried in afrikaans.
-We are 'indexing' 1,000 afrikaans wikipedia articles as our document collection and enforcing a minimum document length of ±750 words to increase quality of results.
+We are 'indexing' 535 afrikaans wikipedia articles as our document collection and enforcing a minimum document length of ±750 words to increase quality of results.
 
 ----
 
