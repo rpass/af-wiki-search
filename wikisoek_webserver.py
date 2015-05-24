@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import cgi
 import re
+from urllib2 import *
 
 app = Flask(__name__)
 
@@ -27,9 +28,29 @@ def search():
 	# "http://localhost:8983/solr/IRSELR/select?q="+query+"&wt=python&indent=true"
 	# send GET request to SOLR
 
-		results = ["result 1", "result 2", "result 3"]
+
+		conn = urlopen('http://localhost:8983/solr/IRSELR/select?q='+query+'&wt=python&indent=true')
+		rsp = eval( conn.read() )
+		matches = 6
+		matches = rsp['response']['numFound']
+
+		results = []
+		#print out the name field for each returned document
+		for doc in rsp['response']['docs']:
+			file_name = doc['resourcename'][0]
+			f = open(file_name, 'r')
+			content = f.readline()
+			while (len(content)<500):
+				content += f.readline()
+				content.replace('\n', ' ').replace('\r', '')
+			f.close()
+			content = re.sub('[^A-Za-z0-9\.]+', ' ', content)
+			#strip file location and file extension
+			name = file_name[file_name.rfind("\\")+1:file_name.rfind('.')]
+			results.append([name,content])
+
 		query = query.replace('+', ' ')
-		return render_template('results.html', query = query, results = results)
+		return render_template('results.html', matches = matches, query = query, results = results)
 
 # @app.route('/reviews/<int:movie_id>/')
 # def getreview(movie_id):
